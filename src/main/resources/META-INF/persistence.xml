@@ -1,0 +1,54 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="main">
+		  <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+
+			
+			<!--BANCO DE TESTE LOCAL-->
+			<!--  <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/painel_solucao" />
+			<property name="javax.persistence.jdbc.user" value="sti" />-->
+			
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/dbcaesarservice" />
+			<property name="javax.persistence.jdbc.user" value="caesar_user" />
+			
+			
+			<!--BANCO DE TESTE
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://TacaratuD:5432/teste" />
+			<property name="javax.persistence.jdbc.user" value="sti" />
+			-->
+			<!--BANCO DE TESTE AUX-->
+			<!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://TacaratuD:5432/teste_portal_solucoes" />-->
+			<!--<property name="javax.persistence.jdbc.user" value="sti" />-->
+			
+			<!--BANCO DE HOMOLOGAÇÃO-->
+			<!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://CandeiasH:5432/painel_solucao" />-->
+			<!--<property name="javax.persistence.jdbc.user" value="sti" />-->
+			
+			<!--BANCO PRODUÇÃO-->
+			<!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://Candeias:5432/painel_solucao" />-->
+			<!--<property name="javax.persistence.jdbc.user" value="painel_solucao" />-->
+
+			<!-- SENHA -->
+			<!-- <property name="javax.persistence.jdbc.password" value="sti_trf" /> -->
+			<property name="javax.persistence.jdbc.password" value="123456" />
+			
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.hbm2ddl.auto" value="" />
+
+			<property name="hibernate.connection.provider_class" value="org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider" />
+		  	<property name="hibernate.c3p0.min_size" value="5" />
+			<property name="hibernate.c3p0.max_size" value="10" />
+			<property name="hibernate.c3p0.timeout" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="100" />
+			<property name="hibernate.c3p0.idle_test_period" value="900" /> 
+		</properties>
+	</persistence-unit>
+
+</persistence>

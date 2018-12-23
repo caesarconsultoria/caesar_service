@@ -1,0 +1,161 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>br.com.caesar.sistemas</groupId>
+  <artifactId>caesarservice</artifactId>
+  <packaging>war</packaging>
+  
+  <version>0.0.1-SNAPSHOT</version>
+  <name>solucao Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  
+ <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<maven.compiler.source>1.7</maven.compiler.source>
+
+		<maven.compiler.target>1.7</maven.compiler.target>
+
+		<version.hibernate>4.3.11.Final</version.hibernate>
+
+		<version.junit>4.12</version.junit>
+
+		<version.postgres>42.2.5</version.postgres>
+
+		<version.tomcat>7.0.61</version.tomcat>
+
+		<version.jstl>1.2</version.jstl>
+
+	  	<version.jackson>2.1.2</version.jackson> 
+
+	  <version.jersey>2.9</version.jersey>
+
+ </properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${version.junit}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- servlet container -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>${version.tomcat}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jsp-api</artifactId>
+			<version>${version.tomcat}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- JSTL -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${version.jstl}</version>
+		</dependency>
+		
+		<!-- Biblioteca necessária para gerenciar os relacionamentos das tabelas de dados -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${version.hibernate}</version>
+		</dependency>
+
+		<!-- Biblioteca necessária para gerenciar o pool de conexão -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>${version.hibernate}</version>
+		</dependency>
+		
+		<!-- Biblioteca necessária para conectar com banco de dados postgre -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${version.postgres}</version>
+		</dependency>
+		
+		<!-- suporte ao Jersey (implementação JAX-RS) -->
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
+			<version>${version.jersey}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-multipart</artifactId>
+			<version>${version.jersey}</version>
+		</dependency>
+
+		<!-- utiliza o Jackson como parser JSON -->
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>${version.jersey}</version>
+		</dependency>
+
+		<!-- Thanks for using https://jar-download.com -->
+		<dependency>
+		    <groupId>org.glassfish.jersey.core</groupId>
+		    <artifactId>jersey-common</artifactId>
+		    <version>${version.jersey}</version>
+		</dependency>
+
+ 		<dependency>
+		    <groupId>org.glassfish.jersey.core</groupId>
+		    <artifactId>jersey-server</artifactId>
+		    <!--  <version>2.13</version> -->
+		    <version>${version.jersey}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.glassfish.jersey.core</groupId>
+		    <artifactId>jersey-client</artifactId>
+		    <version>2.23</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<!--  <version>${version.jackson}</version> -->
+			<version>${version.jackson}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${version.jackson}</version> 
+ 		</dependency>
+		
+	</dependencies>
+	
+  <build>
+    <finalName>solucao</finalName>
+    <plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<configuration>
+				<source>1.7</source>
+				<target>1.7</target>
+			</configuration>
+		</plugin>
+		<plugin>
+	        <groupId>org.sonarsource.scanner.maven</groupId>
+	        <artifactId>sonar-maven-plugin</artifactId>
+	        <version>3.2</version>
+	    </plugin>			
+	</plugins>
+  </build>
+</project>

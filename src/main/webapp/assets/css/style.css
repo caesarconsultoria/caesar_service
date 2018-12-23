@@ -1,0 +1,109 @@
+/* CSS */
+
+/* Geral */
+
+body {
+  background: #efefef;
+}
+
+h2 {
+  color: #777;
+}
+
+/* Cabeçalho JF5 */
+
+.page-header {
+  background: #fafafa;
+  margin-top: 0;
+}
+
+.page-header h1, .page-header h2 {
+  font-family: "Calibri", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.page-header img {
+  max-height: 120px;
+}
+
+/* Tela de login */
+
+.panel-login, .panel-sobre, .alert-login {
+  max-width: 750px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.panel-sobre {
+	text-align: justify;
+}
+
+/* Tela principal */
+
+.main-toolbar {
+  /*text-align: right;*/
+  margin-bottom: 10px;
+}
+
+.main-toolbar button {
+  min-width: 150px;
+}
+
+.filtro {
+
+}
+
+.label-as-badge {
+    border-radius: 1em;
+    margin: 5px;
+}
+
+h6 {
+  font-size: large;
+  color: #666;
+}
+
+.destaque-obrigatorio {
+	color: red;
+	font-weight: bold;
+}
+
+.no-print {
+	margin-bottom: 10px;
+}
+
+@media print {
+	.no-print {
+		display: none;
+	}
+}
+
+/* Rodape */
+footer {
+  text-align: center;
+  font-size: small;
+  /*max-width: 750px;
+  margin: 0 auto;*/
+}
+
+footer .telefone {
+  text-align: right;
+}
+
+/* Voltar ao topo */
+
+#top-link-block.affix-top {
+    position: absolute; /* allows it to "slide" up into view */
+    bottom: -82px;
+    left: 20px;
+}
+#top-link-block.affix {
+    position: fixed; /* keeps it on the bottom once in view */
+    bottom: 20px;
+    left: 20px;
+}
+
+.campo-obrigatorio{
+	border-color: none;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}

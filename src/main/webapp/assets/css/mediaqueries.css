@@ -1,0 +1,49 @@
+
+/** We use the following media queries in our Less files to create the key breakpoints in our grid system. **/
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 768px) {  
+
+#header_principal h1 {
+	font-size: 28px;
+}
+
+#header_principal h2 {
+	font-size: 23px;
+}
+
+div#header_principal h1 {
+	margin-left: 1.9em;
+}
+
+div#header_principal h2 {
+	margin-left: 0;
+	margin-top: 10px;
+}
+
+.divbluebutton {
+	float: right;
+}
+
+#collapse1>div>div>div, #collapse2>div>div>div, #collapse3>div>div>div {
+	margin-bottom: 0.5em;
+}
+
+.espacamento {
+	margin-top: 0;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) { ... }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) { ... }
+
+
+/** We occasionally expand on these media queries to include a max-width to limit CSS to a narrower set of devices. **/
+@media (max-width: @screen-xs-max) { ... }
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+@media (min-width: @screen-lg-min) { ... }

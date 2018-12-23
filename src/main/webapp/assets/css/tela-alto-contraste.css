@@ -1,0 +1,28 @@
+body{
+	background-color: #dadada;
+}
+
+div [class="col-md-6 col-sm-6 text-right"] {
+	color: #ffffff;
+}
+
+button [class="btn btn-lg btn-primary"] {
+	background-color: #75716F;
+}
+
+.panel-primary>.panel-heading{
+	background-color: #75716F;
+	border-color: #75716F;
+}
+
+.painelAdmin{
+	background-color: #dadde0;
+}
+
+.fa-adjust {
+	color: black;
+}
+
+div#background-divgrey .text-right p {
+	color: black;
+}
