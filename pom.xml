@@ -7,7 +7,7 @@
   <packaging>war</packaging>
   
   <version>0.0.1-SNAPSHOT</version>
-  <name>solucao Maven Webapp</name>
+  <name>caesarservice Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
   
@@ -24,7 +24,7 @@
 
 		<version.postgres>42.2.5</version.postgres>
 
-		<version.tomcat>7.0.61</version.tomcat>
+		<version.tomcat>8.5.37</version.tomcat>
 
 		<version.jstl>1.2</version.jstl>
 
@@ -141,21 +141,49 @@
 	</dependencies>
 	
   <build>
-    <finalName>solucao</finalName>
+    <finalName>caesarservice</finalName>
     <plugins>
-		<plugin>
+		<!--  <plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-compiler-plugin</artifactId>
 			<configuration>
 				<source>1.7</source>
 				<target>1.7</target>
 			</configuration>
-		</plugin>
+		</plugin> -->
 		<plugin>
 	        <groupId>org.sonarsource.scanner.maven</groupId>
 	        <artifactId>sonar-maven-plugin</artifactId>
 	        <version>3.2</version>
-	    </plugin>			
+	    </plugin>
+	    <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.3</version> 
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                    	<goal>copy</goal>
+                    </goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <groupId>com.github.jsimone</groupId>
+                                <artifactId>webapp-runner</artifactId>
+                                <version>9.0.11.0</version>
+                                <destFileName>webapp-runner.jar</destFileName>
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+	    
+	    
+	    
+	    
+	    			
 	</plugins>
   </build>
 </project>

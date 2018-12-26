@@ -2,15 +2,12 @@ package br.com.caesar.sistemas.caesarservice.controller;
 
 import java.io.IOException;
 
-import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.caesar.sistemas.caesarservice.dao.ConfiguracaoDAO;
-import br.com.caesar.sistemas.caesarservice.manager.PersistenceManager;
 import br.com.caesar.sistemas.caesarservice.util.ServletUtil;
 
 @SuppressWarnings("serial")
@@ -37,18 +34,19 @@ public class LoginController extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + URL_LOGIN);
 			return;
 		}
-		EntityManager em = PersistenceManager.getEntityManager();
-		ConfiguracaoDAO configuracaoDAO = new ConfiguracaoDAO(em);
-		req.setAttribute("captcha", configuracaoDAO.getAsString(CAPTCHA_HABILITADO));
-		req.setAttribute("sitekey", configuracaoDAO.getAsString(CAPTCHA_SITEKEY));
-		req.setAttribute("cssTela", ServletUtil.getCookie("cssTela", req)); // Seleciona
-																			// CSS
-																			// selecionado
-																			// pelo
-																			// usuário
+		/*
+		 * EntityManager em = PersistenceManager.getEntityManager();
+		 * ConfiguracaoDAO configuracaoDAO = new ConfiguracaoDAO(em);
+		 * req.setAttribute("captcha",
+		 * configuracaoDAO.getAsString(CAPTCHA_HABILITADO));
+		 * req.setAttribute("sitekey",
+		 * configuracaoDAO.getAsString(CAPTCHA_SITEKEY));
+		 * req.setAttribute("cssTela", ServletUtil.getCookie("cssTela", req));
+		 * // Seleciona // CSS // selecionado // pelo // usuário
+		 */
 		req.setCharacterEncoding("UTF-8");
 		req.getRequestDispatcher(PAGINA_LOGIN).forward(req, resp);
-		em.close();
+		// em.close();
 	}
 
 	@Override
