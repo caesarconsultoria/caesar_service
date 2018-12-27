@@ -47,7 +47,8 @@ public class UsuarioResource {
 			return Response.ok().entity(usuarios).build();
 		} catch (RollbackException re) {
 			return Response.status(Status.BAD_REQUEST)
-					.entity("Não foi possível listar os usuários cadastrados. Favor Verificar.").build();
+					.entity("Não foi possível listar os usuários cadastrados. Favor Verificar.")
+					.build();
 		} finally {
 			em.close();
 		}
@@ -66,8 +67,10 @@ public class UsuarioResource {
 	 */
 	@PUT
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response cadastrar(@FormParam("tipoUsuario") long idTipoUsuario, @FormParam("uf") long idUf,
-			@FormParam("nome") String nome, @FormParam("email") String email, @FormParam("celular") String celular) {
+	public Response cadastrar(@FormParam("idTipoUsuario") long idTipoUsuario,
+			@FormParam("uf") long idUf, @FormParam("nome") String nome,
+			@FormParam("email") String email,
+			@FormParam("celular") String celular) {
 
 		String erro = "";
 
@@ -81,7 +84,7 @@ public class UsuarioResource {
 
 			// Localizando o Tipo de Usuário informado
 			TipoUsuario tipoUsuario = new TipoUsuario();
-						tipoUsuario = tipoUsuarioDAO.localizarPorId(idTipoUsuario);
+			tipoUsuario = tipoUsuarioDAO.localizarPorId(idTipoUsuario);
 			if (tipoUsuario.getIdTipoUsuario() < 0) {
 				erro = "Tipo de Usuário não encontrado";
 				new Exception();
@@ -89,7 +92,7 @@ public class UsuarioResource {
 
 			// Lo1calizando a Unidade Federativa informada
 			Uf uf = new Uf();
-			   uf = ufDAO.localizarPorId(idUf);
+			uf = ufDAO.localizarPorId(idUf);
 			if (uf.getIdUf() < 0) {
 				erro = "Uf não encontrada";
 				new Exception();
@@ -117,7 +120,9 @@ public class UsuarioResource {
 			return Response.ok().entity(usuario).build();
 
 		} catch (RollbackException re) {
-			return Response.ok().entity("Ocorreu um erro e o Usuário não foi cadastrado.").build();
+			return Response.ok()
+					.entity("Ocorreu um erro e o Usuário não foi cadastrado.")
+					.build();
 		} finally {
 			em.close();
 		}
@@ -134,17 +139,19 @@ public class UsuarioResource {
 	@GET
 	@Path("/{idUsuario: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response consultar(@Context HttpServletRequest req, @PathParam("idUsuario") long idUsuario) {
+	public Response consultar(@Context HttpServletRequest req,
+			@PathParam("idUsuario") long idUsuario) {
 
 		EntityManager em = PersistenceManager.getEntityManager();
-		  UsuarioDAO dao = new UsuarioDAO(em);
-		 Usuario usuario = new Usuario();
+		UsuarioDAO dao = new UsuarioDAO(em);
+		Usuario usuario = new Usuario();
 		try {
 			usuario = dao.localizarPorId(idUsuario);
 			if (usuario != null) {
 				return Response.ok(usuario).build();
 			} else {
-				return Response.status(Status.NOT_FOUND).entity("Usuário não localizado").build();
+				return Response.status(Status.NOT_FOUND)
+						.entity("Usuário não localizado").build();
 			}
 		} finally {
 			em.close();
@@ -166,25 +173,27 @@ public class UsuarioResource {
 	@POST
 	@Path("{idUsuario: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response atualizar(@PathParam("idUsuario") long idUsuario, @FormParam("tipoUsuario") long idTipoUsuario,
-			@FormParam("uf") long idUf, @FormParam("nome") String nome, @FormParam("email") String email,
+	public Response atualizar(@PathParam("idUsuario") long idUsuario,
+			@FormParam("tipoUsuario") long idTipoUsuario,
+			@FormParam("uf") long idUf, @FormParam("nome") String nome,
+			@FormParam("email") String email,
 			@FormParam("celular") String celular) {
 
-					 EntityManager em = PersistenceManager.getEntityManager();
-						  UfDAO ufDAO = new UfDAO(em);
-				UsuarioDAO usuarioDAO = new UsuarioDAO(em);
+		EntityManager em = PersistenceManager.getEntityManager();
+		UfDAO ufDAO = new UfDAO(em);
+		UsuarioDAO usuarioDAO = new UsuarioDAO(em);
 		TipoUsuarioDAO tipoUsuarioDAO = new TipoUsuarioDAO(em);
 
-						  Uf uf = new Uf();
-				Usuario usuario = new Usuario();
+		Uf uf = new Uf();
+		Usuario usuario = new Usuario();
 		TipoUsuario tipoUsuario = new TipoUsuario();
 
 		try {
 
-					 uf = ufDAO.localizarPorId(idUf);
-				usuario = usuarioDAO.localizarPorId(idUsuario);
+			uf = ufDAO.localizarPorId(idUf);
+			usuario = usuarioDAO.localizarPorId(idUsuario);
 			tipoUsuario = tipoUsuarioDAO.localizarPorId(idTipoUsuario);
-			
+
 			usuario.setNome(nome);
 			usuario.setEmail(email);
 			usuario.setCelular(celular);
@@ -209,11 +218,12 @@ public class UsuarioResource {
 	@DELETE
 	@Path("/{idUsuario: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response remover(@Context HttpServletRequest req, @PathParam("idUsuario") long idUsuario) {
+	public Response remover(@Context HttpServletRequest req,
+			@PathParam("idUsuario") long idUsuario) {
 
 		EntityManager em = PersistenceManager.getEntityManager();
-		  UsuarioDAO dao = new UsuarioDAO(em);
-		 Usuario usuario = new Usuario();
+		UsuarioDAO dao = new UsuarioDAO(em);
+		Usuario usuario = new Usuario();
 		try {
 			usuario = dao.localizarPorId(idUsuario);
 			if (usuario != null) {
@@ -223,7 +233,8 @@ public class UsuarioResource {
 				return Response.status(Status.NOT_FOUND).build();
 			}
 		} catch (RollbackException re) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possível excluir o usuário").build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR)
+					.entity("Não foi possível excluir o usuário").build();
 		} finally {
 			em.close();
 		}
@@ -239,11 +250,15 @@ public class UsuarioResource {
 	private Response validarCampos(Usuario usuario) {
 
 		if (StringUtil.isEmpty(usuario.getNome())) {
-			return Response.status(Status.BAD_REQUEST).entity("Nome da usuário não informado").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Nome da usuário não informado").build();
 		} else if (StringUtil.isEmpty(usuario.getEmail())) {
-			return Response.status(Status.BAD_REQUEST).entity("E-mail do usuário não informado").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("E-mail do usuário não informado").build();
 		} else if (StringUtil.isEmpty(usuario.getCelular())) {
-			return Response.status(Status.BAD_REQUEST).entity("Número do celular do usuário não informado").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Número do celular do usuário não informado")
+					.build();
 		}
 		return Response.ok().build();
 	}
