@@ -25,10 +25,12 @@ public class StatusResource {
 
 	@PUT
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response cadastrar(@FormParam("descricaoStatus") String descricaoStatus) {
+	public Response cadastrar(
+			@FormParam("descricaoStatus") String descricaoStatus) {
 
 		if (StringUtil.isEmpty(descricaoStatus))
-			return Response.status(Status.BAD_REQUEST).entity("Descição de status vazia.").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Descição de status vazia.").build();
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		StatusDAO dao = new StatusDAO(em);
@@ -38,7 +40,8 @@ public class StatusResource {
 			dao.cadastrar(novoStatus);
 			return Response.ok().entity(novoStatus).build();
 		} catch (RollbackException re) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Problema no cadastro de novo status.").build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR)
+					.entity("Problema no cadastro de novo status.").build();
 		} finally {
 			em.close();
 		}
@@ -51,10 +54,12 @@ public class StatusResource {
 		StatusDAO dao = new StatusDAO(em);
 		try {
 
-			List<br.com.caesar.sistemas.caesarservice.model.Status> status = dao.listar();
+			List<br.com.caesar.sistemas.caesarservice.model.Status> status = dao
+					.listar();
 			return Response.ok().entity(status).build();
 		} catch (RollbackException re) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Problema na listagem de status").build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR)
+					.entity("Problema na listagem de status").build();
 		} finally {
 			em.close();
 		}
@@ -73,7 +78,8 @@ public class StatusResource {
 			if (status != null) {
 				return Response.ok(status).build();
 			} else {
-				return Response.status(Status.NOT_FOUND).entity("Status não localizado").build();
+				return Response.status(Status.NOT_FOUND)
+						.entity("Status não localizado").build();
 			}
 		} finally {
 			em.close();
@@ -81,12 +87,13 @@ public class StatusResource {
 	}
 
 	@POST
-	@Path("{idStatus: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response atualizar(@PathParam("idStatus") long idStatus, @FormParam("status") String descricaoStatus) {
+	public Response atualizar(@FormParam("idStatus") long idStatus,
+			@FormParam("descricaoStatus") String descricaoStatus) {
 
 		if (StringUtil.isEmpty(descricaoStatus))
-			return Response.status(Status.BAD_REQUEST).entity("Descrição não informada").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Descrição não informada").build();
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		StatusDAO dao = new StatusDAO(em);
@@ -118,7 +125,8 @@ public class StatusResource {
 				return Response.status(Status.NOT_FOUND).build();
 			}
 		} catch (RollbackException re) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possível excluir status").build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR)
+					.entity("Não foi possível excluir status").build();
 		} finally {
 			em.close();
 		}

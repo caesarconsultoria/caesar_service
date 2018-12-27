@@ -43,7 +43,8 @@ public class AreaResource {
 			List<Area> areas = dao.listar();
 			return Response.ok().entity(areas).build();
 		} catch (RollbackException re) {
-			return Response.status(Status.BAD_REQUEST).entity("Nao pegou. Verificar.").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Nao pegou. Verificar.").build();
 		} finally {
 			em.close();
 		}
@@ -59,11 +60,13 @@ public class AreaResource {
 	 */
 	@PUT
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response cadastrar(@Context HttpServletRequest req, @FormParam("descricaoArea") String descricaoArea) {
+	public Response cadastrar(@Context HttpServletRequest req,
+			@FormParam("descricaoArea") String descricaoArea) {
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		if (StringUtil.isEmpty(descricaoArea))
-			return Response.status(Status.BAD_REQUEST).entity("Nome da area não informado").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Nome da area não informado").build();
 		AreaDAO dao = new AreaDAO(em);
 		Area novaArea = new Area();
 		try {
@@ -71,7 +74,8 @@ public class AreaResource {
 			dao.cadastrar(novaArea);
 			return Response.ok().entity(novaArea).build();
 		} catch (RollbackException re) {
-			return Response.ok().entity("Area ja cadastrada no banco de dados.").build();
+			return Response.ok().entity("Area ja cadastrada no banco de dados.")
+					.build();
 		} finally {
 			em.close();
 		}
@@ -88,7 +92,8 @@ public class AreaResource {
 	@GET
 	@Path("/{idArea: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response consultar(@Context HttpServletRequest req, @PathParam("idArea") long idArea) {
+	public Response consultar(@Context HttpServletRequest req,
+			@PathParam("idArea") long idArea) {
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		AreaDAO dao = new AreaDAO(em);
@@ -98,7 +103,8 @@ public class AreaResource {
 			if (area != null) {
 				return Response.ok(area).build();
 			} else {
-				return Response.status(Status.NOT_FOUND).entity("Area não localizada").build();
+				return Response.status(Status.NOT_FOUND)
+						.entity("Area não localizada").build();
 			}
 		} finally {
 			em.close();
@@ -115,13 +121,14 @@ public class AreaResource {
 	 * @author Julio Cesar - 22/12/2018
 	 */
 	@POST
-	@Path("{idArea: [0-9][0-9]*}")
+	// @Path("{idArea: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response atualizar(@Context HttpServletRequest req, @PathParam("idArea") long idArea,
-			@FormParam("nomeArea") String descricaoArea) {
+	public Response atualizar(@FormParam("idArea") long idArea,
+			@FormParam("descricaoArea") String descricaoArea) {
 
 		if (StringUtil.isEmpty(descricaoArea))
-			return Response.status(Status.BAD_REQUEST).entity("Área de atuação não informada").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Área de atuação não informada").build();
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		AreaDAO dao = new AreaDAO(em);
@@ -147,7 +154,8 @@ public class AreaResource {
 	@DELETE
 	@Path("/{idArea: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response remover(@Context HttpServletRequest req, @PathParam("idArea") long idArea) {
+	public Response remover(@Context HttpServletRequest req,
+			@PathParam("idArea") long idArea) {
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		AreaDAO dao = new AreaDAO(em);
@@ -161,7 +169,8 @@ public class AreaResource {
 				return Response.status(Status.NOT_FOUND).build();
 			}
 		} catch (RollbackException re) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possível excluir area").build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR)
+					.entity("Não foi possível excluir area").build();
 		} finally {
 			em.close();
 		}

@@ -134,7 +134,6 @@ public class StatusDemandaResource {
 	}
 
 	@POST
-	// @Path("{idStatusDemanda: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
 	public Response atualizar(
 			@FormParam("idStatusDemanda") long idStatusDemanda,
@@ -186,7 +185,11 @@ public class StatusDemandaResource {
 			if (usuario != null) {
 				statusDemanda.setUsuario(usuario);
 			}
-			statusDemanda.setData(new Date());
+			// Não será necessário atualizar uma data de uma demanda, tendo em
+			// vista
+			// que precisamos sempre da data do primeiro cadastro
+			// statusDemanda.setData(new Date());
+
 			statusDemandaDAO.atualizar(statusDemanda);
 			return Response.ok(statusDemanda).build();
 		} catch (RollbackException re) {

@@ -43,7 +43,8 @@ public class TipoUsuarioResource {
 			return Response.ok().entity(tipoUsuario).build();
 		} catch (RollbackException re) {
 			return Response.status(Status.BAD_REQUEST)
-					.entity("Não foi possível listar todos os Tipos de Usuários existentes.").build();
+					.entity("Não foi possível listar todos os Tipos de Usuários existentes.")
+					.build();
 		} finally {
 			em.close();
 		}
@@ -65,7 +66,9 @@ public class TipoUsuarioResource {
 		EntityManager em = PersistenceManager.getEntityManager();
 
 		if (StringUtil.isEmpty(descricaoTipoUsuario)) {
-			return Response.status(Status.BAD_REQUEST).entity("Descrição do Tipo de Usuário não informado").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Descrição do Tipo de Usuário não informado")
+					.build();
 		}
 
 		TipoUsuarioDAO dao = new TipoUsuarioDAO(em);
@@ -76,7 +79,9 @@ public class TipoUsuarioResource {
 			dao.cadastrar(tipoUsuario);
 			return Response.ok().entity(tipoUsuario).build();
 		} catch (RollbackException re) {
-			return Response.ok().entity("Tipo de Usuário já cadastrado no banco de dados.").build();
+			return Response.ok()
+					.entity("Tipo de Usuário já cadastrado no banco de dados.")
+					.build();
 		} finally {
 			em.close();
 		}
@@ -94,7 +99,8 @@ public class TipoUsuarioResource {
 	@GET
 	@Path("/{idTipoUsuario: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response consultar(@Context HttpServletRequest req, @PathParam("idTipoUsuario") long idTipoUsuario) {
+	public Response consultar(@Context HttpServletRequest req,
+			@PathParam("idTipoUsuario") long idTipoUsuario) {
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		TipoUsuarioDAO dao = new TipoUsuarioDAO(em);
@@ -104,7 +110,8 @@ public class TipoUsuarioResource {
 			if (tipoUsuario != null) {
 				return Response.ok(tipoUsuario).build();
 			} else {
-				return Response.status(Status.NOT_FOUND).entity("Tipo de Usuário não localizado").build();
+				return Response.status(Status.NOT_FOUND)
+						.entity("Tipo de Usuário não localizado").build();
 			}
 		} finally {
 			em.close();
@@ -121,13 +128,13 @@ public class TipoUsuarioResource {
 	 * @author Julio Cesar - 25/12/2018
 	 */
 	@POST
-	@Path("{idTipoUsuario: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response atualizar(@Context HttpServletRequest req, @PathParam("idTipoUsuario") long idTipoUsuario,
+	public Response atualizar(@FormParam("idTipoUsuario") long idTipoUsuario,
 			@FormParam("descricaoTipoUsuario") String descricaoTipoUsuario) {
 
 		if (StringUtil.isEmpty(descricaoTipoUsuario))
-			return Response.status(Status.BAD_REQUEST).entity("Tipo de Usuário não informado").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Tipo de Usuário não informado").build();
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		TipoUsuarioDAO dao = new TipoUsuarioDAO(em);
@@ -153,7 +160,8 @@ public class TipoUsuarioResource {
 	@DELETE
 	@Path("/{idTipoUsuario: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response remover(@Context HttpServletRequest req, @PathParam("idTipoUsuario") long idTipoUsuario) {
+	public Response remover(@Context HttpServletRequest req,
+			@PathParam("idTipoUsuario") long idTipoUsuario) {
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		TipoUsuarioDAO dao = new TipoUsuarioDAO(em);
@@ -167,7 +175,8 @@ public class TipoUsuarioResource {
 				return Response.status(Status.NOT_FOUND).build();
 			}
 		} catch (RollbackException re) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possível excluir o Tipo de Usuário")
+			return Response.status(Status.INTERNAL_SERVER_ERROR)
+					.entity("Não foi possível excluir o Tipo de Usuário")
 					.build();
 		} finally {
 			em.close();

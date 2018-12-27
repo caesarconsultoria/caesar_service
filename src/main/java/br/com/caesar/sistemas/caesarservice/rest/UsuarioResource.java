@@ -171,11 +171,10 @@ public class UsuarioResource {
 	 * @author Julio Cesar - 25/12/2018
 	 */
 	@POST
-	@Path("{idUsuario: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response atualizar(@PathParam("idUsuario") long idUsuario,
-			@FormParam("tipoUsuario") long idTipoUsuario,
-			@FormParam("uf") long idUf, @FormParam("nome") String nome,
+	public Response atualizar(@FormParam("idUsuario") long idUsuario,
+			@FormParam("idTipoUsuario") long idTipoUsuario,
+			@FormParam("idUf") long idUf, @FormParam("nome") String nome,
 			@FormParam("email") String email,
 			@FormParam("celular") String celular) {
 

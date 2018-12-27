@@ -42,7 +42,8 @@ public class UfResource {
 			List<Uf> ufs = dao.listar();
 			return Response.ok().entity(ufs).build();
 		} catch (RollbackException re) {
-			return Response.status(Status.BAD_REQUEST).entity("Nao pegou. Verificar.").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Nao pegou. Verificar.").build();
 		} finally {
 			em.close();
 		}
@@ -58,14 +59,17 @@ public class UfResource {
 	 */
 	@PUT
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response cadastrar(@Context HttpServletRequest req, @FormParam("uf") String uf,
+	public Response cadastrar(@Context HttpServletRequest req,
+			@FormParam("uf") String uf,
 			@FormParam("descricaoEstado") String descricaoEstado) {
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		if (StringUtil.isEmpty(uf))
-			return Response.status(Status.BAD_REQUEST).entity("Sigla da UF não informada").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Sigla da UF não informada").build();
 		else if (StringUtil.isEmpty(descricaoEstado)) {
-			return Response.status(Status.BAD_REQUEST).entity("Nome do Estado da UF não informado").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Nome do Estado da UF não informado").build();
 		}
 		UfDAO dao = new UfDAO(em);
 		Uf unidadeFederativa = new Uf();
@@ -78,7 +82,8 @@ public class UfResource {
 			return Response.ok().entity(unidadeFederativa).build();
 
 		} catch (RollbackException re) {
-			return Response.ok().entity("UF ja cadastrada no banco de dados.").build();
+			return Response.ok().entity("UF ja cadastrada no banco de dados.")
+					.build();
 		} finally {
 			em.close();
 		}
@@ -96,7 +101,8 @@ public class UfResource {
 	@GET
 	@Path("/{idUf: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response consultar(@Context HttpServletRequest req, @PathParam("idUf") long idUf) {
+	public Response consultar(@Context HttpServletRequest req,
+			@PathParam("idUf") long idUf) {
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		UfDAO dao = new UfDAO(em);
@@ -106,7 +112,8 @@ public class UfResource {
 			if (uf != null) {
 				return Response.ok(uf).build();
 			} else {
-				return Response.status(Status.NOT_FOUND).entity("UF não localizada").build();
+				return Response.status(Status.NOT_FOUND)
+						.entity("UF não localizada").build();
 			}
 		} finally {
 			em.close();
@@ -123,15 +130,17 @@ public class UfResource {
 	 * @author Julio Cesar - 22/12/2018
 	 */
 	@POST
-	@Path("{idUf: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response atualizar(@Context HttpServletRequest req, @PathParam("idUf") long idUf, @FormParam("uf") String uf,
+	public Response atualizar(@FormParam("idUf") long idUf,
+			@FormParam("uf") String uf,
 			@FormParam("descricaoUf") String descricaoEstado) {
 
 		if (StringUtil.isEmpty(uf))
-			return Response.status(Status.BAD_REQUEST).entity("UF não informada").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("UF não informada").build();
 		else if (StringUtil.isEmpty(descricaoEstado)) {
-			return Response.status(Status.BAD_REQUEST).entity("Nome do Estado da UF não informado").build();
+			return Response.status(Status.BAD_REQUEST)
+					.entity("Nome do Estado da UF não informado").build();
 		}
 
 		EntityManager em = PersistenceManager.getEntityManager();
@@ -164,7 +173,8 @@ public class UfResource {
 	@DELETE
 	@Path("/{idUf: [0-9][0-9]*}")
 	@Produces(Application.MEDIA_TYPE_JSON)
-	public Response remover(@Context HttpServletRequest req, @PathParam("idUf") long idUf) {
+	public Response remover(@Context HttpServletRequest req,
+			@PathParam("idUf") long idUf) {
 
 		EntityManager em = PersistenceManager.getEntityManager();
 		UfDAO dao = new UfDAO(em);
@@ -178,7 +188,8 @@ public class UfResource {
 				return Response.status(Status.NOT_FOUND).build();
 			}
 		} catch (RollbackException re) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possível excluir a Unidade Federativa")
+			return Response.status(Status.INTERNAL_SERVER_ERROR)
+					.entity("Não foi possível excluir a Unidade Federativa")
 					.build();
 		} finally {
 			em.close();
