@@ -7,35 +7,17 @@
 		  <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-
 			
-			<!--BANCO DE TESTE LOCAL-->
-			<!--  <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/painel_solucao" />
-			<property name="javax.persistence.jdbc.user" value="sti" />-->
-			
+			<!--  
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/dbcaesarservice" />
 			<property name="javax.persistence.jdbc.user" value="caesar_user" />
+			<property name="javax.persistence.jdbc.password" value="123456" /> -->
+		
+			<!-- Deploy no Heroku --> 
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgres://wstawtrzarwazu:f96ec71a12724a288486b114ef229dd46d10a6193e98b9cdc8fb5ac1c87ea6fd@ec2-184-73-181-132.compute-1.amazonaws.com:5432/d8j78043dsiaj6" />
+			<property name="javax.persistence.jdbc.user" value="wstawtrzarwazu" />
+			<property name="javax.persistence.jdbc.password" value="f96ec71a12724a288486b114ef229dd46d10a6193e98b9cdc8fb5ac1c87ea6fd"/>
 			
-			
-			<!--BANCO DE TESTE
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://TacaratuD:5432/teste" />
-			<property name="javax.persistence.jdbc.user" value="sti" />
-			-->
-			<!--BANCO DE TESTE AUX-->
-			<!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://TacaratuD:5432/teste_portal_solucoes" />-->
-			<!--<property name="javax.persistence.jdbc.user" value="sti" />-->
-			
-			<!--BANCO DE HOMOLOGAÇÃO-->
-			<!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://CandeiasH:5432/painel_solucao" />-->
-			<!--<property name="javax.persistence.jdbc.user" value="sti" />-->
-			
-			<!--BANCO PRODUÇÃO-->
-			<!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://Candeias:5432/painel_solucao" />-->
-			<!--<property name="javax.persistence.jdbc.user" value="painel_solucao" />-->
-
-			<!-- SENHA -->
-			<!-- <property name="javax.persistence.jdbc.password" value="sti_trf" /> -->
-			<property name="javax.persistence.jdbc.password" value="123456" />
 			
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.show_sql" value="false" />
