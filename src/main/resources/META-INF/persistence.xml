@@ -14,7 +14,7 @@
 			<property name="javax.persistence.jdbc.password" value="123456" /> -->
 		
 			<!-- Deploy no Heroku --> 
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgres://wstawtrzarwazu:f96ec71a12724a288486b114ef229dd46d10a6193e98b9cdc8fb5ac1c87ea6fd@ec2-184-73-181-132.compute-1.amazonaws.com:5432/d8j78043dsiaj6" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://wstawtrzarwazu:f96ec71a12724a288486b114ef229dd46d10a6193e98b9cdc8fb5ac1c87ea6fd@ec2-184-73-181-132.compute-1.amazonaws.com:5432/d8j78043dsiaj6" />
 			<property name="javax.persistence.jdbc.user" value="wstawtrzarwazu" />
 			<property name="javax.persistence.jdbc.password" value="f96ec71a12724a288486b114ef229dd46d10a6193e98b9cdc8fb5ac1c87ea6fd"/>
 			
