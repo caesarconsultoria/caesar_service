@@ -13,8 +13,10 @@
 			<property name="javax.persistence.jdbc.user" value="caesar_user" />
 			<property name="javax.persistence.jdbc.password" value="123456" /> -->
 		
-			<!-- Deploy no Heroku --> 
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://wstawtrzarwazu:f96ec71a12724a288486b114ef229dd46d10a6193e98b9cdc8fb5ac1c87ea6fd@ec2-184-73-181-132.compute-1.amazonaws.com:5432/d8j78043dsiaj6" />
+			<!-- Conexão para uso fora do Heroku --> 
+			<!-- <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://wstawtrzarwazu:f96ec71a12724a288486b114ef229dd46d10a6193e98b9cdc8fb5ac1c87ea6fd@ec2-184-73-181-132.compute-1.amazonaws.com:5432/d8j78043dsiaj6" /> -->
+			<!-- <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://wstawtrzarwazu:f96ec71a12724a288486b114ef229dd46d10a6193e98b9cdc8fb5ac1c87ea6fd@ec2-184-73-181-132.compute-1.amazonaws.com:5432/d8j78043dsiaj6?sslmode=require&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory" />-->
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-184-73-181-132.compute-1.amazonaws.com:5432/d8j78043dsiaj6?sslmode=require&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory" />
 			<property name="javax.persistence.jdbc.user" value="wstawtrzarwazu" />
 			<property name="javax.persistence.jdbc.password" value="f96ec71a12724a288486b114ef229dd46d10a6193e98b9cdc8fb5ac1c87ea6fd"/>
 			
@@ -23,8 +25,13 @@
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />
 			<property name="hibernate.hbm2ddl.auto" value="" />
+			
 
 			<property name="hibernate.connection.provider_class" value="org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider" />
+		  	<!-- <property name="hibernate.connection.verifyServerCertificate" value="false"/>
+		  	<property name="hibernate.connection.requireSSL" value="true"/>  
+		  	<property name="hibernate.connection.useSSL" value="true"/>--> 
+		  	
 		  	<property name="hibernate.c3p0.min_size" value="5" />
 			<property name="hibernate.c3p0.max_size" value="10" />
 			<property name="hibernate.c3p0.timeout" value="300" />
